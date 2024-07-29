@@ -107,7 +107,7 @@ onMounted(() => {
             <BaseHead @show-form="displayShow" button-text="createCustomer" @show-list="displayList"
                 button-text1="customerList" :Header="pageName" />
         </header>
-        <div className="relative flex w-full justify-end  h-screen text-gray-700">
+        <div className="flex w-full justify-end  h-screen text-gray-700">
             <div className="lg:flex-row md:flex sm:flex-col  w-full ">
 
 
@@ -125,28 +125,26 @@ onMounted(() => {
                             <input type="text" v-model="searchInput" placeholder="search..."
                                 class="bg-gray-50   border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
                         </div>
-                        <div class=" w-full">
 
-                            <Table :headers="tableHeader" class="">
-                                <tr v-for="(customer, index) in filterData" :key="index"
-                                    class="bg-none  hover:bg-slate-200">
+                        <Table :headers="tableHeader" class="">
+                            <tr v-for="(customer, index) in filterData" :key="index"
+                                class="bg-none  hover:bg-slate-200">
 
-                                    <td>{{ index + 1 }}</td>
-                                    <td>{{ customer.fullName }}</td>
-                                    <td>{{ customer.sex }}</td>
-                                    <td>{{ customer.phone }}</td>
-                                    <td>{{ customer.tinNumber }}</td>
+                                <td>{{ index + 1 }}</td>
+                                <td>{{ customer.fullName }}</td>
+                                <td>{{ customer.sex }}</td>
+                                <td>{{ customer.phone }}</td>
+                                <td>{{ customer.tinNumber }}</td>
 
-                                    <td>
-                                        <a @click="editCustomer(customer._id)"
-                                            class=" text-center font-medium text-green-400 hover:text-green-700 hover:underline">Edit</a>
+                                <td>
+                                    <a @click="editCustomer(customer._id)"
+                                        class=" text-center font-medium text-green-400 hover:text-green-700 hover:underline">Edit</a>
 
 
-                                    </td>
-                                </tr>
+                                </td>
+                            </tr>
 
-                            </Table>
-                        </div>
+                        </Table>
                     </div>
                 </div>
                 <div className="flex md:flex-row sm:flex-row flex-shrink-0 md:w-1/4 w-full py-1 pl-4">
@@ -162,7 +160,7 @@ onMounted(() => {
                                 <div class="px-1  flex-col  rounded-sm flex " @change="select">
                                     <label class="font-semibold text-slate-600 ">Sex</label>
                                     <select
-                                        class="h-8  px-2 py-1 appearance-none border border-slate-300 w-full bg-slate-50 rounded   focus:outline-none focus:ring-0 focus:shadow-none"
+                                        class="appearance-none border border-slate-300 w-full bg-slate-50 rounded   focus:outline-none focus:ring-0 focus:shadow-none"
                                         v-model="customer.sex">
                                         <option disabled="true">choose sex </option>
                                         <option>Male </option>

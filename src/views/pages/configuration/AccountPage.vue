@@ -124,7 +124,7 @@ onMounted(() => {
                 button-text1="accountList" :Header="pageName" />
         </header>
         <div className="w-full flex justify-center m-1 my-3">
-            <div className=" flex-grow  md:w-3/4 w-full" v-if="open">
+            <div className=" flex-grow overflow-auto md:w-3/4 w-full" v-if="open">
                 <div class="flex gap-4">
                     <div class="relative w-1/3 mb-4 ml-4">
                         <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
@@ -138,39 +138,36 @@ onMounted(() => {
                          dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-gray-500
                           dark:focus:border-gray-500" />
                     </div>
-                    <div class="mt-15 mx-2">
+                    <div class="m-1 mx-2">
                         <label for="itemsPerPage">Items per page:</label>
 
                         <select v-model="itemsPerPage" class="h-8 px-6 py-1 mx-2 appearance-none border border-slate-300 w-15 bg-slate-50 rounded
                         focus:outline-none focus:ring-0 focus:shadow-none">
                             <option v-for="option in perPageOptions" :key="option" :value="option">{{
-                                option }}
+                    option }}
                             </option>
                         </select>
                     </div>
                 </div>
-                <div class="rlative w-full">
-                    <Table :headers="tableHeader">
-                        <tr v-for="(account, index) in paginatedUsers" :key="index"
-                            class="bg-none rounded-2xl hover:bg-slate-200">
-                            <td>{{ index + 1 }}</td>
-                            <td>{{ account.firstName }}</td>
-                            <td>{{ account.sex }}</td>
-                            <td>{{ account.email }}</td>
-                            <td>
-                                <span
-                                    :class="{ 'text-green-500': account.active, 'text-red-500': !account.deactivate }">
-                                    {{ account.active ? 'Active' : 'Inactive' }}
-                                </span>
-                            </td>
-                            <td>
-                                <a class=" text-center font-medium text-red-400 hover:text-red-700 hover:underline"
-                                    @click="deactivate(account._id)">Deactivate</a>
-                            </td>
-                        </tr>
-                    </Table>
-                </div>
-                <div class=" flex justify-end">
+                <Table :headers="tableHeader">
+                    <tr v-for="(account, index) in paginatedUsers" :key="index"
+                        class="bg-none rounded-2xl hover:bg-slate-200">
+                        <td>{{ index + 1 }}</td>
+                        <td>{{ account.firstName }}</td>
+                        <td>{{ account.sex }}</td>
+                        <td>{{ account.email }}</td>
+                        <td>
+                            <span :class="{ 'text-green-500': account.active, 'text-red-500': !account.deactivate }">
+                                {{ account.active ? 'Active' : 'Inactive' }}
+                            </span>
+                        </td>
+                        <td>
+                            <a class=" text-center font-medium text-red-400 hover:text-red-700 hover:underline"
+                                @click="deactivate(account._id)">Deactivate</a>
+                        </td>
+                    </tr>
+                </Table>
+                <div class="flex justify-end">
                     <nav class="inline-flex -space-x-px text-sm  items-center mx-4 mt-4">
                         <button @click="prevPage" :disabled="currentPage === 1"
                             class="flex items-center justify-center px-3 h-8 ms-0 leading-tight text-gray-500 bg-white border border-e-0 border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Previous</button>
